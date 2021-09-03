@@ -1,2 +1,5 @@
-# vittles
-Supply airdrop for dev
+# Vittles
+
+Supply airdrop for dev. Operation-Vittles
+
+
