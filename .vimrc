@@ -27,10 +27,10 @@ set hlsearch
 set ignorecase
 set smartcase
 "autocmd vimenter * nested colorscheme gruvbox
+set termguicolors 
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 "handles CTags and autocomplete"
-set tags=~/Dev/Oscillo/.ctags
 
 " Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
 map <F2> :NERDTreeToggle<CR>
@@ -41,6 +41,10 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+"Set terminal size and enable keymap"
+set termwinsize=10x200
+map <F4> :botright term<CR>
 
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
