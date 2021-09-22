@@ -1,0 +1,2 @@
+/srv/bbonefs        172.17.0.0/16(rw,insecure,sync,no_subtree_check,no_root_squash)
+

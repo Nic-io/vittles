@@ -3,22 +3,24 @@ FROM alpine:latest
 WORKDIR /home 
 
 RUN apk add gcompat \
-            clang \
-            llvm \
             git \
             make \
             cmake \
             tree \
             ctags \
-            vim
+            dhcp \
+            tftp-hpa \
+            nfs-utils \
+            vim 
 
-  
-#ADD http://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/ctags-5.9.20210411.0-r0.apk /tmp
 COPY .vimrc /tmp/
 COPY drop.sh /tmp/
+COPY beagle_bb/dhcpd.conf /etc/dhcp/
+COPY beagle_bb/exports /etc/
 
 WORKDIR /tmp
-#RUN apk add --allow-untrusted ctags-5.9.20210411.0-r0.apk
 RUN /bin/sh /tmp/drop.sh vim
 
-
+#Somehow needed by DHCPD
+RUN touch /var/lib/dhcp/dhcpd.leases
+RUN mkdir /srv/bbonefs

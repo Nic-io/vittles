@@ -21,4 +21,14 @@ case $1 in
       cd  ~/.vim/pack/default/start/
       git clone  https://github.com/morhetz/gruvbox.git
     ;;
+    
+    #Build container for bare metal arm development toolchain
+    bare-metal-c)
+      docker build -t vittles-c -f bare-metal-c/Dockerfile .
+    ;;
+    
+    #Build Container for Beagle Bone Black C development
+    beagle_bb)
+      docker build -t vittles-bbb -f beagle_bb/Dockerfile .
+    ;;
 esac
