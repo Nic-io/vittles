@@ -2,25 +2,20 @@ FROM alpine:latest
 
 WORKDIR /home 
 
-RUN apk add gcompat \
-            git \
-            make \
-            cmake \
-            tree \
-            ctags \
+RUN apk add openrc \
             dhcp \
             tftp-hpa \
-            nfs-utils \
-            vim 
+            nfs-utils 
 
-COPY .vimrc /tmp/
-COPY drop.sh /tmp/
 COPY beagle_bb/dhcpd.conf /etc/dhcp/
 COPY beagle_bb/exports /etc/
-
-WORKDIR /tmp
-RUN /bin/sh /tmp/drop.sh vim
+COPY beagle_bb/startup.sh /home/
+RUN chmod +x /home/startup.sh
+WORKDIR /srv
 
 #Somehow needed by DHCPD
 RUN touch /var/lib/dhcp/dhcpd.leases
+#needed for openrc to run in container
+RUN mkdir -p /run/openrc/
+RUN touch /run/openrc/softlevel
 RUN mkdir /srv/bbonefs
