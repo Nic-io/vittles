@@ -27,3 +27,8 @@ Where ROOTFS_FOLDER is the targets rootfs on your host machine and
 BOOT_FOLDER is where the dtb and compile kernel are on your host
 
 Run the startup.sh script within the container to spin up the services
+
+You'll also need to add  whatever interface your taget is connected to to the docker0 bridge
+
+ie. ``` sudo brctl addif docker0 enx001 ```
+

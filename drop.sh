@@ -31,4 +31,9 @@ case $1 in
     beagle_bb)
       docker build -t vittles-bbb -f beagle_bb/Dockerfile .
     ;;
+
+    #Build container for zephyr OS projects development
+    zephyr_cntr)
+      docker build -t vittles-zeph -f zephyr_cntr/Dockerfile .
+    ;;
 esac

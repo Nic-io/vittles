@@ -1,22 +1,30 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
-WORKDIR /home 
-
-RUN apk add gcompat \
-            git \
-            buid-base \
-            make \
-            cmake \
-            tree \
-            python3 \
-            python3-dev
-            vim
-
-COPY .vimrc /tmp/
-COPY drop.sh /tmp/
-ADD http://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/dtc-1.6.1-r0.apk /tmp/dtc-1.6.1-ro.apk
+ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /tmp
-RUN /bin/sh /tmp/drop.sh vim
-RUN apk add /tmp/dtc-1.6.1-ro.apk
 
+RUN apt -y update && apt -y upgrade && apt -y install wget 
+
+RUN wget https://apt.kitware.com/kitware-archive.sh 
+RUN bash /tmp/kitware-archive.sh
+
+RUN apt -y update && apt -y install --no-install-recommends git \
+                cmake \
+                ninja-build \
+                gperf \
+                ccache \
+                dfu-util \
+                device-tree-compiler \
+                python3-dev \
+                python3-pip \
+                python3-setuptools \
+                python3-tk \
+                python3-wheel \
+                xz-utils \
+                file \
+                make \
+                gcc \
+                gcc-multilib \
+                g++-multilib \
+                libsdl2-dev
