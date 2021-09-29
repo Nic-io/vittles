@@ -16,7 +16,7 @@ Sets up vimrc file and vim plugins
 ```
 #### Build a container for tftpboot & nfs
 ```
-./drop.sh beagle_bb
+./drop.sh nfs_srv
 ```
 can then be run with 
 
