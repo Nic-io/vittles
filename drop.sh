@@ -28,7 +28,7 @@ case $1 in
     ;;
     
     #Build Container for Beagle Bone Black C development
-    beagle_bb)
+    nfs_srv)
       docker build -t vittles-bbb -f beagle_bb/Dockerfile .
     ;;
 
