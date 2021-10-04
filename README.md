@@ -2,19 +2,31 @@
 
 Supply airdrop for dev. Operation-Vittles
 
-## Usage 
+Contains docker and config files for various dev enviroments.
 
-#### Setting up vim
+# Usage 
+
+## Setting up vim
 ```
 ./drop.sh vim 
 ```
-Sets up vimrc file and vim plugins
+Sets up vimrc file and vim plugins on your local machine.
 
-#### Build a container for bare metal C dev
+## Build a container for Zephyr application development
+```
+./drop.sh zephyr_cntr
+```
+This builds an image based on ubuntu with the Zephyr SDK and sources. All that is needed 
+is to run ```source ~/zephyrproject/zephyr/zephyr-env.sh``` after starting up the container.
+
+This being no lightweight image it is better run with VScode. 
+For quick setup simply ```cp misc/devcontainer.json 'YOUR_PROJECT_PATH'/.devcontainer/devcontainer.json``` 
+
+## Build a container for bare metal C dev
 ```
 ./drop.sh bare-metal-c
 ```
-#### Build a container for tftpboot & nfs
+## Build a container for tftpboot & nfs
 ```
 ./drop.sh nfs_srv
 ```
