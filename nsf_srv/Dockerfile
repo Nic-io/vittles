@@ -7,9 +7,9 @@ RUN apk add openrc \
             tftp-hpa \
             nfs-utils 
 
-COPY beagle_bb/dhcpd.conf /etc/dhcp/
-COPY beagle_bb/exports /etc/
-COPY beagle_bb/startup.sh /home/
+COPY nsf_srv/dhcpd.conf /etc/dhcp/
+COPY nsf_srv/exports /etc/
+COPY nsf_srv/startup.sh /home/
 RUN chmod +x /home/startup.sh
 WORKDIR /srv
 

@@ -1,17 +1,17 @@
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV PATH="/root/.local/bin:${PATH}"
+ENV PATH="/root/zephyrproject/zephyr/scripts:/root/.local/bin:${PATH}"
+ENV ZEPHYR_BASE=/root/zephyrproject/zephyr
+COPY zephyr_cntr/.bashrc /root/.bashrc
 
 WORKDIR /tmp
-
 RUN apt -y update && apt -y upgrade && apt -y install wget 
-
 RUN wget https://apt.kitware.com/kitware-archive.sh 
 RUN bash /tmp/kitware-archive.sh
-
 RUN apt -y update && apt -y install --no-install-recommends git \
                 cmake \
+                locales \
                 ninja-build \
                 gperf \
                 ccache \
@@ -29,7 +29,14 @@ RUN apt -y update && apt -y install --no-install-recommends git \
                 gcc-multilib \
                 g++-multilib \
                 libsdl2-dev
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8 
 
+#Install Zephyr related tools and SDK
 RUN pip3 install --user -U west
 RUN echo 'export PATH=/root/.local/bin:$PATH' >> ~/.bashrc
 
