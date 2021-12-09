@@ -16,10 +16,7 @@ Sets up vimrc file and vim plugins on your local machine.
 ```
 ./drop.sh zephyr_cntr
 ```
-This builds an image based on ubuntu with the Zephyr SDK and sources. All you need
-is to run
-```source ~/zephyrproject/zephyr/zephyr-env.sh```
-within the containter
+This builds an image based on ubuntu with the Zephyr SDK and sources. 
 
 This being no lightweight image it is better run with VScode. 
 For quick setup simply 
